@@ -16,6 +16,6 @@ jobs:
       - name: Automatic Rebase
         uses: cirrus-actions/rebase@1.4
         with:
-          set-safe-directory: /github/workspace
+          set-safe-directory: '/github/workspace'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB }}
