@@ -13,8 +13,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
-      - name: work around permission issue
-        run: git config --global --add safe.directory /github/workspace
+      - name: Set ownership
+        run: |
+          # this is to fix GIT not liking owner of the checkout dir
+          chown -R $(id -u):$(id -g) $PWD
       - name: Automatic Rebase
         uses: cirrus-actions/rebase@1.4
         env:
